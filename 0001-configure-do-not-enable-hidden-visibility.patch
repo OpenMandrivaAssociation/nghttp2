@@ -1,0 +1,75 @@
+From 66f1d9c8232d6c5ae4919c5d59db013de9aee92c Mon Sep 17 00:00:00 2001
+From: Kamil Dudka <kdudka@redhat.com>
+Date: Mon, 26 Oct 2015 16:41:17 +0100
+Subject: [PATCH] configure: do not enable hidden visibility
+
+... until the upstream test-suite is ready for that
+
+Bug: https://github.com/tatsuhiro-t/nghttp2/issues/410
+---
+ configure    | 35 -----------------------------------
+ configure.ac |  2 +-
+ 2 files changed, 1 insertion(+), 36 deletions(-)
+
+diff --git a/configure b/configure
+index 07fefc6..724c0d0 100755
+--- a/configure
++++ b/configure
+@@ -22983,41 +22983,6 @@ CFLAGS=$ac_save_CFLAGS
+ 
+ 
+ EXTRACFLAG=
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether C compiler accepts -fvisibility=hidden" >&5
+-$as_echo_n "checking whether C compiler accepts -fvisibility=hidden... " >&6; }
+-if ${ax_cv_check_cflags___fvisibility_hidden+:} false; then :
+-  $as_echo_n "(cached) " >&6
+-else
+-
+-  ax_check_save_flags=$CFLAGS
+-  CFLAGS="$CFLAGS  -fvisibility=hidden"
+-  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+-/* end confdefs.h.  */
+-
+-int
+-main ()
+-{
+-
+-  ;
+-  return 0;
+-}
+-_ACEOF
+-if ac_fn_c_try_compile "$LINENO"; then :
+-  ax_cv_check_cflags___fvisibility_hidden=yes
+-else
+-  ax_cv_check_cflags___fvisibility_hidden=no
+-fi
+-rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+-  CFLAGS=$ax_check_save_flags
+-fi
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ax_cv_check_cflags___fvisibility_hidden" >&5
+-$as_echo "$ax_cv_check_cflags___fvisibility_hidden" >&6; }
+-if test x"$ax_cv_check_cflags___fvisibility_hidden" = xyes; then :
+-  EXTRACFLAG="-fvisibility=hidden"
+-else
+-  :
+-fi
+-
+ 
+ 
+ 
+diff --git a/configure.ac b/configure.ac
+index 59fa5b0..a906b43 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -678,7 +678,7 @@ CFLAGS=$ac_save_CFLAGS
+ AC_SUBST([WARNCFLAGS])
+ 
+ EXTRACFLAG=
+-AX_CHECK_COMPILE_FLAG([-fvisibility=hidden], [EXTRACFLAG="-fvisibility=hidden"])
++dnl AX_CHECK_COMPILE_FLAG([-fvisibility=hidden], [EXTRACFLAG="-fvisibility=hidden"])
+ 
+ AC_SUBST([EXTRACFLAG])
+ 
+-- 
+2.5.2
+
