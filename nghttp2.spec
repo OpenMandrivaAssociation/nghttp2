@@ -5,14 +5,13 @@
 Summary: Experimental HTTP/2 client, server and proxy
 Name: nghttp2
 Version: 1.4.0
-Release: %mkrel 1
+Release: 0.1
 License: MIT
 Group: System/Libraries
 URL: https://nghttp2.org/
 Source0: https://github.com/tatsuhiro-t/nghttp2/releases/download/v%{version}/nghttp2-%{version}.tar.xz
 Patch0: nghttp2-1.4.0-libev.diff
 Patch1: 0001-configure-do-not-enable-hidden-visibility.patch
-BuildRequires: pkgconfig(cunit)
 BuildRequires: pkgconfig(libev)
 BuildRequires: openssl-devel
 
