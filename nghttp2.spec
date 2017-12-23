@@ -14,8 +14,10 @@ URL: https://nghttp2.org/
 Source0: https://github.com/nghttp2/nghttp2/archive/v%{version}.tar.gz
 BuildRequires: pkgconfig(cunit)
 BuildRequires: pkgconfig(libev)
+BuildRequires: pkgconfig(libevent)
 BuildRequires: pkgconfig(libcares)
-BuildRequires: openssl-devel
+BuildRequires: pkgconfig(openssl)
+BuildRequires: pkgconfig(jansson)
 BuildRequires: boost-devel
 BuildRequires: cmake ninja
 BuildRequires: python-cython
