@@ -21,6 +21,7 @@ BuildRequires: pkgconfig(libevent)
 BuildRequires: pkgconfig(libcares)
 BuildRequires: pkgconfig(openssl)
 BuildRequires: pkgconfig(jansson)
+BuildRequires: pkgconfig(zlib)
 BuildRequires: boost-devel
 BuildRequires: cmake ninja
 BuildRequires: python-cython
