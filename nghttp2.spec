@@ -6,12 +6,15 @@
 
 Summary: Experimental HTTP/2 client, server and proxy
 Name: nghttp2
-Version: 1.29.0
+Version: 1.32.0
 Release: 1
 License: MIT
 Group: System/Libraries
 URL: https://nghttp2.org/
 Source0: https://github.com/nghttp2/nghttp2/archive/v%{version}.tar.gz
+# Needed to avoid confusion between python binary 3.7
+# and python library 3.7.0-b4 (both are from the same source...)
+Patch0: nghttp2-1.32.0-buildfix.patch
 BuildRequires: pkgconfig(cunit)
 BuildRequires: pkgconfig(libev)
 BuildRequires: pkgconfig(libevent)
@@ -65,8 +68,7 @@ Python bindings for the NGHTTP2 HTTP/2 library
 
 %prep
 
-%setup -q
-%apply_patches
+%autosetup -p1
 %cmake \
 	-DLIBEV_INCLUDE_DIR=%{_includedir}/libev \
 	-DENABLE_ASIO_LIB:BOOL=TRUE \

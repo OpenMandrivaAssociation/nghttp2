@@ -1,0 +1,12 @@
+diff -up nghttp2-1.32.0/CMakeLists.txt.1~ nghttp2-1.32.0/CMakeLists.txt
+--- nghttp2-1.32.0/CMakeLists.txt.1~	2018-05-08 15:18:42.000000000 +0200
++++ nghttp2-1.32.0/CMakeLists.txt	2018-05-12 01:16:12.648546046 +0200
+@@ -151,7 +151,7 @@ if(ENABLE_PYTHON_BINDINGS)
+       "(ENABLE_PYTHON_BINDINGS=1) but dependencies are not met.")
+   endif()
+   if(NOT PYTHON_VERSION_STRING STREQUAL PYTHONLIBS_VERSION_STRING)
+-    message(FATAL_ERROR
++    message(WARNING
+       "Python executable and library must have the same version!"
+       " Found Python ${PYTHON_VERSION_STRING} and"
+       " PythonLibs ${PYTHONLIBS_VERSION_STRING}"
