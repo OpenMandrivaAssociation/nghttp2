@@ -68,8 +68,15 @@ Requires: %{libname} >= %{version}-%{release}
 Python bindings for the NGHTTP2 HTTP/2 library
 
 %prep
-
 %autosetup -p1
+%ifarch %{ix86}
+# As of boost 1.67.0, clang 7.0.0-331113,
+# boost-atomic is partially incompatible with clang
+# /usr/include/boost/atomic/detail/ops_gcc_x86_dcas.hpp:163:21: error: address argument to atomic builtin cannot be const-qualified ('const volatile boost::atomics::detail::gcc_dcas_x86::storage_type *' (aka 'const volatile unsigned long long *') invalid)
+export CC=gcc
+export CXX=g++
+%endif
+
 %cmake \
 	-DLIBEV_INCLUDE_DIR=%{_includedir}/libev \
 	-DENABLE_ASIO_LIB:BOOL=TRUE \
