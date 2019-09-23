@@ -22,6 +22,8 @@ BuildRequires: pkgconfig(libcares)
 BuildRequires: pkgconfig(openssl)
 BuildRequires: pkgconfig(jansson)
 BuildRequires: pkgconfig(zlib)
+BuildRequires: pkgconfig(python3)
+BuildRequires: pkgconfig(libxml-2.0)
 BuildRequires: boost-devel
 BuildRequires: cmake ninja
 BuildRequires: python-cython
