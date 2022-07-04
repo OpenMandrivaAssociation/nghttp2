@@ -6,12 +6,12 @@
 
 Summary: Experimental HTTP/2 client, server and proxy
 Name: nghttp2
-Version: 1.46.0
+Version: 1.48.0
 Release: 1
 License: MIT
 Group: System/Libraries
 URL: https://nghttp2.org/
-Source0: https://github.com/nghttp2/nghttp2/archive/v%{version}.tar.gz
+Source0: https://github.com/nghttp2/nghttp2/releases/download/v%{version}/%{name}-%{version}.tar.xz
 # Needed to avoid confusion between python binary 3.7
 # and python library 3.7.0-b4 (both are from the same source...)
 Patch0: nghttp2-1.32.0-buildfix.patch
@@ -112,10 +112,10 @@ strip -R .comment --strip-unneeded %{buildroot}%{_libdir}/python*/site-packages/
 %{_bindir}/deflatehd
 %{_bindir}/inflatehd
 %{_datadir}/nghttp2
-%{_mandir}/man1/h2load.1*
-%{_mandir}/man1/nghttp.1*
-%{_mandir}/man1/nghttpd.1*
-%{_mandir}/man1/nghttpx.1*
+%doc %{_mandir}/man1/h2load.1*
+%doc %{_mandir}/man1/nghttp.1*
+%doc %{_mandir}/man1/nghttpd.1*
+%doc %{_mandir}/man1/nghttpx.1*
 
 %files -n %{libname}
 %{_libdir}/libnghttp2.so.%{major}*
