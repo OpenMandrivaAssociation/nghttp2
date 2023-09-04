@@ -1,10 +1,11 @@
 %define major 14
-%define libname %mklibname nghttp2_ %{major}
+%define oldlibname %mklibname nghttp2_ 14
+%define libname %mklibname nghttp2
 %define develname %mklibname -d nghttp2
 
 Summary: Experimental HTTP/2 client, server and proxy
 Name: nghttp2
-Version: 1.55.1
+Version: 1.56.0
 Release: 1
 License: MIT
 Group: System/Libraries
@@ -24,7 +25,7 @@ BuildRequires: pkgconfig(libnghttp3)
 BuildRequires: pkgconfig(systemd)
 BuildRequires: boost-devel
 BuildRequires: cmake ninja
-BuildRequires: python-cython
+BuildRequires: python-cython0
 BuildRequires: python-setuptools
 BuildRequires: ruby bison
 BuildRequires: python-sphinx
@@ -37,6 +38,7 @@ This package contains the HTTP/2 client, server and proxy programs.
 %package -n %{libname}
 Summary: A library implementing the HTTP/2 protocol
 Group: System/Libraries
+%rename %{oldlibname}
 
 %description -n %{libname}
 libnghttp2 is a library implementing the Hypertext Transfer Protocol
