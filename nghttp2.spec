@@ -5,8 +5,8 @@
 
 Summary: Experimental HTTP/2 client, server and proxy
 Name: nghttp2
-Version: 1.58.0
-Release: 3
+Version: 1.62.1
+Release: 1
 License: MIT
 Group: System/Libraries
 URL: https://nghttp2.org/
@@ -24,13 +24,12 @@ BuildRequires: pkgconfig(libbpf)
 BuildRequires: pkgconfig(libnghttp3)
 BuildRequires: pkgconfig(systemd)
 BuildRequires: boost-devel
-BuildRequires: cmake ninja
-BuildRequires: python-cython0
-BuildRequires: python-setuptools
 BuildRequires: ruby bison
 BuildRequires: python-sphinx
-BuildRequires: pkgconfig(libngtcp2_crypto_quictls) 
-BuildRequires: lib64ngtcp2_crypto_quictls
+BuildSystem: cmake
+BuildOption: -DLIBEV_INCLUDE_DIR=%{_includedir}/libev
+BuildOption: -DENABLE_APP:BOOL=TRUE
+BuildOption: -DENABLE_LIBBPF:BOOL=ON
 
 %description
 This package contains the HTTP/2 client, server and proxy programs.
@@ -38,6 +37,7 @@ This package contains the HTTP/2 client, server and proxy programs.
 %package -n %{libname}
 Summary: A library implementing the HTTP/2 protocol
 Group: System/Libraries
+# Renamed before 5.0
 %rename %{oldlibname}
 
 %description -n %{libname}
@@ -54,26 +54,12 @@ Requires: %{libname} >= %{version}-%{release}
 The libnghttp2-devel package includes libraries and header files needed
 for building applications with libnghttp2.
 
-%prep
-%autosetup -p1
-%cmake \
-	-DLIBEV_INCLUDE_DIR=%{_includedir}/libev \
-	-DENABLE_APP:BOOL=TRUE \
-	-DENABLE_HTTP3:BOOL=ON \
-	-DENABLE_LIBBPF:BOOL=ON \
-	-G Ninja
-
-%build
-%ninja -C build
-
 %check
 # test the just built library instead of the system one, without using rpath
 export "LD_LIBRARY_PATH=$RPM_BUILD_ROOT%{_libdir}"
 %ninja -C build check || :
 
-%install
-%ninja_install -C build
-
+%install -a
 # will be installed via %%doc
 rm -f "$RPM_BUILD_ROOT%{_datadir}/doc/nghttp2/README.rst"
 
@@ -96,5 +82,6 @@ rm -f "$RPM_BUILD_ROOT%{_datadir}/doc/nghttp2/README.rst"
 %files -n %{develname}
 %{_includedir}/nghttp2
 %{_libdir}/pkgconfig/*.pc
+%{_libdir}/cmake/nghttp2
 %{_libdir}/*.so
 %doc README.rst
