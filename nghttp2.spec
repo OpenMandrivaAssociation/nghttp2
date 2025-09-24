@@ -5,7 +5,7 @@
 
 Summary: Experimental HTTP/2 client, server and proxy
 Name: nghttp2
-Version: 1.65.0
+Version: 1.67.1
 Release: 1
 License: MIT
 Group: System/Libraries
@@ -63,6 +63,9 @@ export "LD_LIBRARY_PATH=$RPM_BUILD_ROOT%{_libdir}"
 # will be installed via %%doc
 rm -f "$RPM_BUILD_ROOT%{_datadir}/doc/nghttp2/README.rst"
 
+# Wrong place...
+mv %{buildroot}%{_prefix}/lib/cmake %{buildroot}%{_libdir}
+
 %files
 %{_bindir}/h2load
 %{_bindir}/nghttp
@@ -70,7 +73,6 @@ rm -f "$RPM_BUILD_ROOT%{_datadir}/doc/nghttp2/README.rst"
 %{_bindir}/nghttpx
 %{_bindir}/deflatehd
 %{_bindir}/inflatehd
-%{_datadir}/nghttp2
 %doc %{_mandir}/man1/h2load.1*
 %doc %{_mandir}/man1/nghttp.1*
 %doc %{_mandir}/man1/nghttpd.1*
