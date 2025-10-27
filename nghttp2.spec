@@ -5,7 +5,7 @@
 
 Summary: Experimental HTTP/2 client, server and proxy
 Name: nghttp2
-Version: 1.67.1
+Version: 1.68.0
 Release: 1
 License: MIT
 Group: System/Libraries
