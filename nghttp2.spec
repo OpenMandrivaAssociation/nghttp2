@@ -63,9 +63,6 @@ export "LD_LIBRARY_PATH=$RPM_BUILD_ROOT%{_libdir}"
 # will be installed via %%doc
 rm -f "$RPM_BUILD_ROOT%{_datadir}/doc/nghttp2/README.rst"
 
-# Wrong place...
-mv %{buildroot}%{_prefix}/lib/cmake %{buildroot}%{_libdir}
-
 %files
 %{_bindir}/h2load
 %{_bindir}/nghttp
